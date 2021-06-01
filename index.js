@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 
 const db = require("./db/db");
+
 require("dotenv").config();
 
 const shortId = require("shortid");
