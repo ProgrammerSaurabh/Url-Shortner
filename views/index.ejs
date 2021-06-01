@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <title>Url Shortner</title>
+    <style>
+      .copy-text {
+        background-color: #212529;
+        border-radius: 5px;
+        padding: 3px 5px;
+        cursor: pointer;
+        color: white;
+      }
+      .copy-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container py-5">
+        <h1 class="display-5 fw-bold">Url Shortner</h1>
+        <form method="POST" action="/submit">
+          <div class="input-group my-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter your url"
+              aria-label="Enter your url"
+              aria-describedby="submit"
+              name="url"
+            />
+            <button class="btn btn-outline-secondary" type="submit" id="submit">
+              Shrink
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+      <% if(urls.length > 0) { %>
+      <table class="table table-striped table-responsive">
+        <thead>
+          <th>Url</th>
+          <th>Short</th>
+          <th>Click</th>
+        </thead>
+        <tbody>
+          <% urls.forEach((url) => { %>
+          <tr>
+            <td>
+              <a
+                href="<%= url.long %>"
+                target="_blank"
+                class="text-primary text-decoration-none"
+                ><%= url.long %></a
+              >
+            </td>
+            <td class="copy-flex">
+              <a
+                href="<%= url.short %>"
+                target="_blank"
+                class="text-primary text-decoration-none"
+                ><%= url.short %></a
+              >
+            </td>
+            <td><%= url.clicks %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } else { %>
+      <div class="container py-3 text-center">
+        <h1>No urls yet</h1>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>
